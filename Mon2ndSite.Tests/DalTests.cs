@@ -39,12 +39,9 @@ namespace Mon2ndSite.Tests
             using (IDal dal = new Dal())
             {
                 dal.NewRestaurant("La bonne fourchette", "01 02 03 04 05");
+                dal.EditRestaurant(1, "La bonne cuillère", null);
+
                 List<Resto> restos = dal.GetRestos();
-                int id = restos.First(r => r.Nom == "La bonne fourchette").Id;
-
-                dal.EditRestaurant(id, "La bonne cuillère", null);
-
-                restos = dal.GetRestos();
                 Assert.IsNotNull(restos);
                 Assert.AreEqual(1, restos.Count);
                 Assert.AreEqual("La bonne cuillère", restos[0].Nom);
