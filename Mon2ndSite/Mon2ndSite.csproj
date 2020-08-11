@@ -103,6 +103,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BddContext.cs" />
+    <Compile Include="Models\Dal.cs" />
+    <Compile Include="Models\IDal.cs" />
+    <Compile Include="Models\Poll.cs" />
+    <Compile Include="Models\Resto.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +125,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
