@@ -108,6 +108,7 @@
     <Compile Include="Models\IDal.cs" />
     <Compile Include="Models\Poll.cs" />
     <Compile Include="Models\Resto.cs" />
+    <Compile Include="Models\Resultats.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

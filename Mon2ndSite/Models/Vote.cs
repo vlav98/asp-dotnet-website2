@@ -9,6 +9,6 @@ namespace Mon2ndSite.Models
     {
         public int Id { get; set; }
         public virtual Resto Resto { get; set; }
-        public virtual User Utilisateur { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace Mon2ndSite.Models
         public int Id { get; set; }
         [Required, MaxLength(30)]
         public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
