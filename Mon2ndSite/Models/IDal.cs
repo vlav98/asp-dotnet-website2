@@ -19,6 +19,5 @@ namespace Mon2ndSite.Models
         bool Voted(int idSondage, string idString);
         void AddVote(int idSondage, int v, int idUser);
         int NewPoll();
-        List<Resultats> GetResults(int idSondage);
     }
 }

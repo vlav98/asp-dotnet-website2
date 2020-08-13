@@ -16,9 +16,9 @@ namespace Mon2ndSite
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            IDatabaseInitializer<BddContext> init = new InitChoixResto();
-            Database.SetInitializer(init);
-            init.InitializeDatabase(new BddContext());
+            /*IDatabaseInitializer<BddContext> init = new InitChoixResto();*/
+            /*Database.SetInitializer(init);
+            init.InitializeDatabase(new BddContext());*/
         }
     }
 }

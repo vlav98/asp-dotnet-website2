@@ -62,12 +62,19 @@ namespace Mon2ndSite.Models
             return bdd.Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public User GetUser(string idString)
+        public User GetUser(string idStr)
         {
-            int id;
-            if (int.TryParse(idString, out id))
-                return GetUser(id);
-            return null;
+            switch (idStr)
+            {
+                case "Chrome":
+                    return CreeOuRecupere("Nico", "1234");
+                case "IE":
+                    return CreeOuRecupere("Jérémie", "1234");
+                case "Firefox":
+                    return CreeOuRecupere("Delphine", "1234");
+                default:
+                    return CreeOuRecupere("Timéo", "1234");
+            }
         }
 
         public int AddUser(string username, string password)
@@ -79,40 +86,25 @@ namespace Mon2ndSite.Models
             return user.Id;
         }
 
-        public bool Voted(int idPoll, string idString)
+        public bool Voted(int idPoll, string idStr)
         {
-            int id;
-            if (int.TryParse(idString, out id))
+            User user = GetUser(idStr);
+            if (user != null)
             {
-                Poll sondage = bdd.Polls.First(s => s.Id == idPoll);
-                if (sondage.Votes == null)
+                Poll poll = bdd.Polls.First(s => s.Id == idPoll);
+                if (poll.Votes == null)
                     return false;
-                return sondage.Votes.Any(v => v.User != null && v.User.Id == id);
+                return poll.Votes.Any(v => v.User != null && v.User.Id == user.Id);
             }
             return false;
         }
 
         public int NewPoll()
         {
-            Poll sondage = new Poll { Date = DateTime.Now };
-            bdd.Polls.Add(sondage);
+            Poll poll = new Poll { Date = DateTime.Now };
+            bdd.Polls.Add(poll);
             bdd.SaveChanges();
-            return sondage.Id;
-        }
-
-        public List<Resultats> GetResults(int idPoll)
-        {
-            List<Resto> restaurants = GetRestos();
-            List<Resultats> resultats = new List<Resultats>();
-            Poll sondage = bdd.Polls.First(s => s.Id == idPoll);
-            foreach (IGrouping<int, Vote> grouping in sondage.Votes.GroupBy(v => v.Resto.Id))
-            {
-                int idRestaurant = grouping.Key;
-                Resto resto = restaurants.First(r => r.Id == idRestaurant);
-                int nombreDeVotes = grouping.Count();
-                resultats.Add(new Resultats { Nom = resto.Nom, Telephone = resto.Telephone, NombreDeVotes = nombreDeVotes });
-            }
-            return resultats;
+            return poll.Id;
         }
 
         public void AddVote(int idPoll, int idResto, int idUser)
@@ -122,10 +114,10 @@ namespace Mon2ndSite.Models
                 Resto = bdd.Restos.First(r => r.Id == idResto),
                 User = bdd.Users.First(u => u.Id == idUser)
             };
-            Poll sondage = bdd.Polls.First(s => s.Id == idPoll);
-            if (sondage.Votes == null)
-                sondage.Votes = new List<Vote>();
-            sondage.Votes.Add(vote);
+            Poll poll = bdd.Polls.First(s => s.Id == idPoll);
+            if (poll.Votes == null)
+                poll.Votes = new List<Vote>();
+            poll.Votes.Add(vote);
             bdd.SaveChanges();
         }
 
@@ -133,6 +125,17 @@ namespace Mon2ndSite.Models
         {
             string encodedPassword= "ChoixResto" + password + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(encodedPassword)));
+        }
+
+        private User CreeOuRecupere(string nom, string motDePasse)
+        {
+            User user = LogIn(nom, motDePasse);
+            if (user == null)
+            {
+                int id = AddUser(nom, motDePasse);
+                return GetUser(id);
+            }
+            return user;
         }
     }
 }

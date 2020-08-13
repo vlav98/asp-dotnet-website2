@@ -128,17 +128,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccueilController.cs" />
-    <Compile Include="Controllers\RestoesController.cs" />
+    <Compile Include="Controllers\RestosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\InitChoixResto.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
     <Compile Include="Models\IDal.cs" />
     <Compile Include="Models\Poll.cs" />
     <Compile Include="Models\Resto.cs" />
-    <Compile Include="Models\Resultats.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
