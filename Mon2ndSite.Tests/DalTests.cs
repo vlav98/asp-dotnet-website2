@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mon2ndSite.Controllers;
 using Mon2ndSite.Models;
 
 namespace Mon2ndSite.Tests
@@ -246,6 +248,16 @@ namespace Mon2ndSite.Tests
             Assert.AreEqual(1, resultats2[2].NombreDeVotes);
             Assert.AreEqual("Resto pinière", resultats2[2].Nom);
             Assert.AreEqual("0102030405", resultats2[2].Telephone);
+        }
+
+        [TestMethod]
+        public void AccueilController_Index_RenvoiVueParDefaut()
+        {
+            AccueilController controller = new AccueilController();
+
+            ViewResult resultat = (ViewResult)controller.Index();
+
+            Assert.AreEqual(string.Empty, resultat.ViewName);
         }
     }
 }
