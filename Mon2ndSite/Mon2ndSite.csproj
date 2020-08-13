@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\InitChoixResto.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
     <Compile Include="Models\IDal.cs" />
