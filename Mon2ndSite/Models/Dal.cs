@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mon2ndSite.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -26,13 +27,13 @@ namespace Mon2ndSite.Models
             bdd.Dispose();
         }
 
-        public void NewRestaurant(string Name, string Phone)
+        public void NewResto(string Name, string Phone)
         {
             bdd.Restos.Add(new Resto { Nom = Name, Telephone = Phone });
             bdd.SaveChanges();
         }
 
-        public void EditRestaurant(int id, string Name, string Phone)
+        public void EditResto(int id, string Name, string Phone)
         {
             Resto foundResto = bdd.Restos.FirstOrDefault(resto => resto.Id == id);
             if (foundResto != null)
@@ -43,7 +44,7 @@ namespace Mon2ndSite.Models
             }
         }
 
-        public bool ExistRestaurant(string name)
+        public bool ExistResto(string name)
         {
             Resto foundResto = bdd.Restos.FirstOrDefault(resto => resto.Nom == name);
             if (foundResto != null)
@@ -64,6 +65,10 @@ namespace Mon2ndSite.Models
 
         public User GetUser(string idStr)
         {
+            /*int id;
+            if (int.TryParse(idStr, out id))
+                return GetUser(id);
+            return null;*/
             switch (idStr)
             {
                 case "Chrome":
@@ -88,13 +93,13 @@ namespace Mon2ndSite.Models
 
         public bool Voted(int idPoll, string idStr)
         {
-            User user = GetUser(idStr);
-            if (user != null)
+            int id;
+            if (int.TryParse(idStr, out id))
             {
-                Poll poll = bdd.Polls.First(s => s.Id == idPoll);
+                Poll poll= bdd.Polls.First(s => s.Id == idPoll);
                 if (poll.Votes == null)
                     return false;
-                return poll.Votes.Any(v => v.User != null && v.User.Id == user.Id);
+                return poll.Votes.Any(v => v.User != null && v.User.Id == id);
             }
             return false;
         }
@@ -119,6 +124,21 @@ namespace Mon2ndSite.Models
                 poll.Votes = new List<Vote>();
             poll.Votes.Add(vote);
             bdd.SaveChanges();
+        }
+
+        public List<Results> GetResults(int idPoll)
+        {
+            List<Resto> restaurants = GetRestos();
+            List<Results> Results = new List<Results>();
+            Poll poll = bdd.Polls.First(s => s.Id == idPoll);
+            foreach (IGrouping<int, Vote> grouping in poll.Votes.GroupBy(v => v.Resto.Id))
+            {
+                int idResto = grouping.Key;
+                Resto resto = restaurants.First(r => r.Id == idResto);
+                int nombreDeVotes = grouping.Count();
+                Results.Add(new Results { Nom = resto.Nom, Telephone = resto.Telephone, NombreDeVotes = nombreDeVotes });
+            }
+            return Results;
         }
 
         private string EncodeMD5(string password)

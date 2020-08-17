@@ -128,14 +128,20 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccueilController.cs" />
-    <Compile Include="Controllers\RestosController.cs" />
+    <Compile Include="Controllers\PollController.cs" />
+    <Compile Include="Controllers\RestoController.cs" />
+    <Compile Include="Models\Results.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\InitChoixResto.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
     <Compile Include="Models\IDal.cs" />
     <Compile Include="Models\Poll.cs" />
+    <Compile Include="Models\RestaurantCheckBoxViewModel.cs" />
+    <Compile Include="Models\RestaurantVoteViewModel.cs" />
     <Compile Include="Models\Resto.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vote.cs" />
@@ -146,14 +152,19 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Restoes\Create.cshtml" />
-    <Content Include="Views\Restoes\Delete.cshtml" />
-    <Content Include="Views\Restoes\Details.cshtml" />
-    <Content Include="Views\Restoes\Edit.cshtml" />
-    <Content Include="Views\Restoes\Index.cshtml" />
+    <Content Include="Views\Restos\Create.cshtml" />
+    <Content Include="Views\Restos\Delete.cshtml" />
+    <Content Include="Views\Restos\Details.cshtml" />
+    <Content Include="Views\Restos\Edit.cshtml" />
+    <Content Include="Views\Restos\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Accueil\Index.cshtml" />
+    <Content Include="Views\Vote\Index.cshtml" />
+    <Content Include="Views\Resto\Create.cshtml" />
+    <Content Include="Views\Resto\Index.cshtml" />
+    <Content Include="Views\Resto\Edit.cshtml" />
+    <Content Include="Views\Vote\AfficheResultat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,6 +174,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Poll\" />
+    <Folder Include="Views\Restaurant\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,54 +1,51 @@
-﻿using System;
+﻿using Mon2ndSite.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Mon2ndSite.Models;
 
 namespace Mon2ndSite.Controllers
 {
-    public class RestaurantController : Controller
+    public class RestoController : Controller
     {
         private IDal dal;
 
-        public RestaurantController() : this(new Dal())
+        public RestoController() : this(new Dal())
         {
         }
 
-        public RestaurantController(IDal dalIoc)
+        public RestoController(IDal dalIoc)
         {
             dal = dalIoc;
         }
 
         public ActionResult Index()
         {
-            List<Resto> listeDesRestaurants = dal.GetRestos();
-            return View(listeDesRestaurants);
+            List<Resto> listeDesRestos = dal.GetRestos();
+            return View(listeDesRestos);
         }
 
-        public ActionResult CreerRestaurant()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreerRestaurant(Resto resto)
+        public ActionResult Create(Resto resto)
         {
-            if (dal.ExistRestaurant(resto.Nom))
+            if (dal.ExistResto(resto.Nom))
             {
                 ModelState.AddModelError("Nom", "Ce nom de restaurant existe déjà");
                 return View(resto);
             }
             if (!ModelState.IsValid)
                 return View(resto);
-            dal.NewRestaurant(resto.Nom, resto.Telephone);
+            dal.NewResto(resto.Nom, resto.Telephone);
             return RedirectToAction("Index");
         }
 
-        public ActionResult ModifierRestaurant(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id.HasValue)
             {
@@ -62,11 +59,11 @@ namespace Mon2ndSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult ModifierRestaurant(Resto resto)
+        public ActionResult Edit(Resto resto)
         {
             if (!ModelState.IsValid)
                 return View(resto);
-            dal.EditRestaurant(resto.Id, resto.Nom, resto.Telephone);
+            dal.EditResto(resto.Id, resto.Nom, resto.Telephone);
             return RedirectToAction("Index");
         }
     }

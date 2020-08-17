@@ -1,0 +1,22 @@
+﻿@model List<ChoixResto.Models.Resultats>
+@{
+    ViewBag.Title = "AfficheResultat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Résultats du sondage :</h2>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Nombre de votes</th>
+    </tr>
+    @foreach (var resto in Model)
+    {
+        <tr>
+            <td>@resto.Nom</td>
+            <td>@resto.Telephone</td>
+            <td>@resto.NombreDeVotes</td>
+        </tr>
+    }
+</table>
