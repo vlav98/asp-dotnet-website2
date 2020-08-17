@@ -17,9 +17,9 @@ namespace Mon2ndSite.Tests
         [TestInitialize]
         public void Init_AvantChaqueTest()
         {
-            IDatabaseInitializer<BddContext> init = new DropCreateDatabaseAlways<BddContext>();
+            /*IDatabaseInitializer<BddContext> init = new DropCreateDatabaseAlways<BddContext>();
             Database.SetInitializer(init);
-            init.InitializeDatabase(new BddContext());
+            init.InitializeDatabase(new BddContext());*/
 
             dal = new Dal();
         }

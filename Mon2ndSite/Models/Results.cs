@@ -1,6 +1,6 @@
-﻿namespace Mon2ndSite.Controllers
+﻿namespace Mon2ndSite.Models
 {
-     public class Results
+    public class Results
     {
         public string Nom { get; set; }
         public string Telephone { get; set; }
