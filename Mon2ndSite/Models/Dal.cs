@@ -93,10 +93,12 @@ namespace Mon2ndSite.Models
 
         public bool Voted(int idPoll, string idStr)
         {
+            string idUser = Convert.ToString(GetUser(idStr).Id);
             int id;
-            if (int.TryParse(idStr, out id))
+
+            if (int.TryParse(idUser, out id))
             {
-                Poll poll= bdd.Polls.First(s => s.Id == idPoll);
+                Poll poll = bdd.Polls.First(s => s.Id == idPoll);
                 if (poll.Votes == null)
                     return false;
                 return poll.Votes.Any(v => v.User != null && v.User.Id == id);

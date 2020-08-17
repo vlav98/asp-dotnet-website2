@@ -50,10 +50,10 @@ namespace Mon2ndSite.Controllers
 
         public ActionResult AfficheResultat(int id)
         {
-            /*if (!dal.Voted(id, Request.Browser.Browser))
+            if (!dal.Voted(id, Request.Browser.Browser))
             {
                 return RedirectToAction("Index", new { id = id });
-            }*/
+            }
             List<Results> results = dal.GetResults(id);
             return View(results.OrderByDescending(r => r.NombreDeVotes).ToList());
         }
