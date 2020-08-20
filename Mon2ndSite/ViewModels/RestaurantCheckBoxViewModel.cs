@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Mon2ndSite.Models
+namespace Mon2ndSite.ViewModels
 {
     public class RestoCheckBoxViewModel
     {

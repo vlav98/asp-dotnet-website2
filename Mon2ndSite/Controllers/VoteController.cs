@@ -1,4 +1,5 @@
 ﻿using Mon2ndSite.Models;
+using Mon2ndSite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Mon2ndSite.Controllers
 {
+    [Authorize]
     public class VoteController : Controller
     {
         private IDal dal;
@@ -20,6 +22,7 @@ namespace Mon2ndSite.Controllers
             dal = dalIoc;
         }
 
+        [AllowAnonymous]
         public ActionResult Index(int id)
         {
             RestoVoteViewModel viewModel = new RestoVoteViewModel

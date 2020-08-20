@@ -65,21 +65,10 @@ namespace Mon2ndSite.Models
 
         public User GetUser(string idStr)
         {
-            /*int id;
+            int id;
             if (int.TryParse(idStr, out id))
                 return GetUser(id);
-            return null;*/
-            switch (idStr)
-            {
-                case "Chrome":
-                    return CreeOuRecupere("Nico", "1234");
-                case "IE":
-                    return CreeOuRecupere("Jérémie", "1234");
-                case "Firefox":
-                    return CreeOuRecupere("Delphine", "1234");
-                default:
-                    return CreeOuRecupere("Timéo", "1234");
-            }
+            return null;
         }
 
         public int AddUser(string username, string password)
@@ -93,10 +82,8 @@ namespace Mon2ndSite.Models
 
         public bool Voted(int idPoll, string idStr)
         {
-            string idUser = Convert.ToString(GetUser(idStr).Id);
             int id;
-
-            if (int.TryParse(idUser, out id))
+            if (int.TryParse(idStr, out id))
             {
                 Poll poll = bdd.Polls.First(s => s.Id == idPoll);
                 if (poll.Votes == null)

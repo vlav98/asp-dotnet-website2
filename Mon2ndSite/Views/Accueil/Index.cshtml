@@ -6,11 +6,17 @@
 <h2>Index</h2>
 
 <p>Prêts à choisir un restaurant ?</p>
-@using (Html.BeginForm())
-{
-    <input type="submit" value="Créer un sondage" />
-}
-<ul>
-    <li>@Html.ActionLink("Ajouter un restaurant", "Create", "Resto")</li>
-    <li>@Html.ActionLink("Modifier les restaurants", "Index", "Resto")</li>
+<p>
+    @using (Html.BeginForm())
+    {
+        <input class="btn btn-primary" role="button" type="submit" value="Créer un sondage" />
+    }
+</p>
+<ul class="list-group mt-5">
+    <li class="list-group-item">
+        @Html.ActionLink("Ajouter un restaurant", "Create", "Resto")
+    </li>
+    <li class="list-group-item">
+        @Html.ActionLink("Modifier les restaurants", "Index", "Resto")
+    </li>
 </ul>

@@ -100,7 +100,7 @@ namespace Mon2ndSite.Tests
         }
 
         [TestMethod]
-        public void LogIn_LoginMdpOk_AuthentificationOK()
+        public void LogIn_LogInMdpOk_AuthentificationOK()
         {
             dal.AddUser("Nouvel User", "12345");
 
@@ -111,7 +111,7 @@ namespace Mon2ndSite.Tests
         }
 
         [TestMethod]
-        public void LogIn_LoginOkMdpKo_AuthentificationKO()
+        public void LogIn_LogInOkMdpKo_AuthentificationKO()
         {
             dal.AddUser("Nouvel User", "12345");
             User User = dal.LogIn("Nouvel User", "0");
@@ -120,7 +120,7 @@ namespace Mon2ndSite.Tests
         }
 
         [TestMethod]
-        public void LogIn_LoginKoMdpOk_AuthentificationKO()
+        public void LogIn_LogInKoMdpOk_AuthentificationKO()
         {
             dal.AddUser("Nouvel User", "12345");
             User User = dal.LogIn("Nouvel", "12345");
@@ -129,7 +129,7 @@ namespace Mon2ndSite.Tests
         }
 
         [TestMethod]
-        public void LogIn_LoginMdpKo_AuthentificationKO()
+        public void LogIn_LogInMdpKo_AuthentificationKO()
         {
             User User = dal.LogIn("Nouvel User", "12345");
 

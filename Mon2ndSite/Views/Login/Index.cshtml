@@ -1,0 +1,38 @@
+﻿@model Mon2ndSite.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@if (Model.Log)
+{
+    <h3>
+        Vous êtes déjà authentifié avec le login :
+        @Model.User.Username
+    </h3>
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+}
+else
+{
+    <p>
+        Veuillez vous authentifier :
+    </p>
+    using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => m.User.Username)
+            @Html.TextBoxFor(m => m.User.Username)
+            @Html.ValidationMessageFor(m => m.User.Username)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.User.Password)
+            @Html.PasswordFor(m => m.User.Password)
+            @Html.ValidationMessageFor(m => m.User.Password)
+        </div>
+        <input type="submit" value="Se connecter" />
+        <br />
+        @Html.ActionLink("Créer un compte", "CreerCompte")
+    }
+}
