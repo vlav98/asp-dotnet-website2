@@ -29,7 +29,7 @@ namespace Mon2ndSite.Controllers
             {
                 ListeDesResto = dal.GetRestos().Select(r => new RestoCheckBoxViewModel { Id = r.Id, NomEtTelephone = string.Format("{0} ({1})", r.Nom, r.Telephone) }).ToList()
             };
-            if (dal.Voted(id, Request.Browser.Browser))
+            if (dal.Voted(id, HttpContext.User.Identity.Name))
             {
                 return RedirectToAction("AfficheResultat", new { id = id });
             }
@@ -41,7 +41,7 @@ namespace Mon2ndSite.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-            User user = dal.GetUser(Request.Browser.Browser);
+            User user = dal.GetUser(HttpContext.User.Identity.Name);
             if (user == null)
                 return new HttpUnauthorizedResult();
             foreach (RestoCheckBoxViewModel restaurantCheckBoxViewModel in viewModel.ListeDesResto.Where(r => r.EstSelectionne))
@@ -53,7 +53,7 @@ namespace Mon2ndSite.Controllers
 
         public ActionResult AfficheResultat(int id)
         {
-            if (!dal.Voted(id, Request.Browser.Browser))
+            if (!dal.Voted(id, HttpContext.User.Identity.Name))
             {
                 return RedirectToAction("Index", new { id = id });
             }
