@@ -22,7 +22,7 @@ namespace Mon2ndSite.Controllers
             dal = dalIoc;
         }
 
-        [AllowAnonymous]
+        /*[AllowAnonymous]*/
         public ActionResult Index(int id)
         {
             RestoVoteViewModel viewModel = new RestoVoteViewModel

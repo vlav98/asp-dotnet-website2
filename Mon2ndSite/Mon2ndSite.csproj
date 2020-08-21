@@ -169,6 +169,7 @@
     <Content Include="Views\Vote\AfficheResultat.cshtml" />
     <Content Include="Views\Resto\Details.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

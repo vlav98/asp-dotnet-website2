@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Login</h2>
+<h2>Se connecter</h2>
+<hr />
 
 @if (Model.Log)
 {
@@ -16,23 +17,30 @@
 }
 else
 {
-    <p>
+    <h5>
         Veuillez vous authentifier :
-    </p>
+    </h5>
     using (Html.BeginForm())
     {
-        <div>
-            @Html.LabelFor(m => m.User.Username)
-            @Html.TextBoxFor(m => m.User.Username)
-            @Html.ValidationMessageFor(m => m.User.Username)
+        <div class="container">
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.Username, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.User.Username, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.User.Username, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.Password, htmlAttributes: new { @class = "control-label" })
+                @Html.PasswordFor(m => m.User.Password, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.User.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input class="btn btn-primary" role="button" type="submit" value="Se connecter" />
+                </div>
+            </div>        
+            <br />
         </div>
-        <div>
-            @Html.LabelFor(m => m.User.Password)
-            @Html.PasswordFor(m => m.User.Password)
-            @Html.ValidationMessageFor(m => m.User.Password)
-        </div>
-        <input type="submit" value="Se connecter" />
-        <br />
-        @Html.ActionLink("Créer un compte", "CreerCompte")
+
+        @Html.ActionLink("Créer un compte", "Create")
     }
 }
